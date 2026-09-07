@@ -35,7 +35,7 @@ Input Image
 | **ConvAutoencoder** | Learns to reconstruct normal textures; defects produce high reconstruction error |
 | **ResNet-18 Feature Extractor** | Frozen ImageNet features for perceptual loss and feature-bank distance scoring |
 | **U-Net** | Pixel-level binary segmentation of defect regions |
-| **VisualInspectionAgent** | Orchestrates the two-stage pipeline with threshold gating |
+| **VisualInspection** | Orchestrates the two-stage pipeline with threshold gating |
 | **Grad-CAM** | Explainability — highlights which regions drove the segmentation prediction |
 
 ### Anomaly Scoring (3-signal fusion)
@@ -52,7 +52,7 @@ Weights: `0.3 × pixel + 0.3 × feature + 1.4 × bank` (bank is strongest standa
 ## Project Structure
 
 ```
-agentic-visual-inspection/
+Visual-inspection/
 ├── config.py              # All hyperparameters and paths
 ├── train.py               # End-to-end training script
 ├── evaluate.py            # Full held-out evaluation suite
@@ -77,16 +77,15 @@ agentic-visual-inspection/
 │   ├── visualization.py   # Confusion matrix, ROC curve, figure rendering
 │   └── gradcam.py         # U-Net Grad-CAM explainability
 │
-├── agent/
 │   ├── __init__.py
-│   └── inspector.py       # VisualInspectionAgent (PASS / REVIEW / REJECT)
+│   └── inspector.py       # VisualInspection (PASS / REVIEW / REJECT)
 │
 ├── outputs/               # Generated at runtime (gitignored)
-│   ├── agentic_vision_checkpoint.pt
-│   └── agent_quantitative_report.csv
+│   ├── vision_checkpoint.pt
+│   └── quantitative_report.csv
 │
 └── notebooks/
-    └── agentic-ai-wood.ipynb  # Original Kaggle notebook (single-file version)
+    └── Ai-wood.ipynb  # Original Kaggle notebook (single-file version)
 ```
 
 ---
@@ -123,7 +122,7 @@ On **Kaggle**, add the dataset `ipythonx/mvtec-ad` via *Add Input* — the code 
 python train.py
 ```
 
-Trains the autoencoder (40 epochs) and U-Net (60 epochs), calibrates thresholds, and saves everything to `outputs/agentic_vision_checkpoint.pt`.
+Trains the autoencoder (40 epochs) and U-Net (60 epochs), calibrates thresholds, and saves everything to `outputs/vision_checkpoint.pt`.
 
 ### 4. Evaluate
 
@@ -170,7 +169,7 @@ LR          = 1e-3
 
 ## Kaggle Notebook
 
-The original single-file Kaggle notebook (with all outputs) is in `notebooks/agentic-ai-wood.ipynb`. It runs end-to-end on a Kaggle GPU (T4/P100) with the dataset `ipythonx/mvtec-ad` added as input.
+The original single-file Kaggle notebook (with all outputs) is in `notebooks/ai-wood.ipynb`. It runs end-to-end on a Kaggle GPU (T4/P100) with the dataset `ipythonx/mvtec-ad` added as input.
 
 ---
 
