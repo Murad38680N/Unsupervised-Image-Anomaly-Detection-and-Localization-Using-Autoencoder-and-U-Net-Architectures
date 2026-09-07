@@ -151,7 +151,6 @@ The pipeline produces paper-grade evidence at every stage:
 |-------|---------|
 | **Autoencoder** | Reconstruction samples, train/val loss curve, classification report, confusion matrix, ROC + AUROC |
 | **U-Net** | Predicted masks vs ground truth, train/val loss curve, pixel-level classification report, confusion matrix, pixel ROC + AUROC |
-| **Agent** | Full visual analysis (8 panels), 3D error surface, per-image CSV (precision/recall/F1/IoU/Dice), image-level AUROC, leave-one-type-out generalization |
 
 ---
 
